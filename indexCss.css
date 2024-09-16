@@ -1,0 +1,177 @@
+/* Reset de base et styles généraux */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    margin: 0;
+    padding: 0;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+    overflow: hidden;
+    padding: 0 20px;
+}
+
+header, section, footer {
+    padding: 20px;
+    margin-bottom: 20px;
+}
+
+/* Styles de l'en-tête */
+header {
+    background-color: #f4f4f4;
+    text-align: center;
+    background: #35424a;
+    color: #ffffff;
+    padding-top: 30px;
+    min-height: 70px;
+    border-bottom: #e8491d 3px solid;
+}
+
+header h1 {
+    font-size: 2.5em;
+    margin-bottom: 10px;
+}
+
+header h2 {
+    font-size: 1.5em;
+    color: #e8491d;
+}
+
+/* Styles des sections */
+section {
+    padding: 40px 5px;
+    background: #fff;
+    margin-bottom: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+section h2 {
+    color: #35424a;
+    margin-bottom: 20px;
+    font-size: 2em;
+}
+
+/* Styles spécifiques pour la section À propos */
+#about p {
+    font-size: 1.1em;
+    line-height: 1.8;
+}
+
+/* Styles pour la section Projets */
+#projects h3 {
+    color: #e8491d;
+    margin-top: 20px;
+}
+
+#projects p {
+    margin-bottom: 15px;
+}
+
+/* Styles pour la section Compétences */
+#skills ul {
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: start;
+}
+
+#skills li {
+    background: #35424a;
+    color: #fff;
+    padding: 10px 20px;
+    margin: 5px;
+    border-radius: 5px;
+}
+
+/* Styles pour la section Contact */
+#contact p {
+    margin-bottom: 10px;
+}
+
+/* Styles du pied de page */
+footer {
+    background: #35424a;
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 0.9em;
+}
+
+/* Media Queries pour la responsivité */
+@media(max-width: 768px) {
+    .container {
+        width: 95%;
+    }
+
+    header h1 {
+        font-size: 2em;
+    }
+
+    header h2 {
+        font-size: 1.2em;
+    }
+
+    section h2 {
+        font-size: 1.5em;
+    }
+}
+
+/* Styles pour le menu de navigation */
+header nav {
+    float: right;
+    margin-top: 10px;
+}
+
+header nav ul {
+    list-style: none;
+}
+
+header nav li {
+    display: inline;
+    padding: 0 20px;
+}
+
+header nav a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 18px;
+    text-transform: uppercase;
+}
+
+header nav a:hover {
+    color: #e8491d;
+    border-bottom: 2px solid #e8491d;
+}
+
+/* Ajustement pour la responsivité */
+@media(max-width: 768px) {
+    header nav {
+        float: none;
+        text-align: center;
+        margin-top: 20px;
+    }
+
+    header nav li {
+        display: block;
+        padding: 10px;
+    }
+}
+
+/* Ajustement de l'en-tête pour accommoder le menu */
+header {
+    padding-bottom: 20px;
+}
+
+header .container {
+    overflow: hidden; /* Pour gérer le float */
+}

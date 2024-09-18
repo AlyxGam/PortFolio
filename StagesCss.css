@@ -34,6 +34,10 @@ header h1 {
     font-size: 2.5em;
 }
 
+header h2 {
+    font-size: 1.5em;
+}
+
 header nav ul {
     list-style: none;
 }
@@ -58,61 +62,36 @@ h1 {
     margin: 20px 0;
 }
 
-/* Styles pour les sections d'AP */
-.ap-link {
-    text-decoration: none;
-    color: inherit;
-    display: block;
-}
-
-.ap-frame {
+/* Styles pour les sections de stage */
+.stage-frame {
     background: #fff;
-    margin: 20px auto;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    max-width: 600px;
-    transition: transform 0.3s ease;
+    margin: 20px auto; /* Espace autour du cadre */
+    padding: 20px; /* Espace intérieur du cadre */
+    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Ombre autour du cadre */
+    max-width: 600px; /* Largeur maximale du cadre */
 }
 
-.ap-frame:hover {
-    transform: translateY(-5px);
+.stage-title {
+    font-size: 1.5em; /* Taille du titre */
+    color: #e8491d; /* Couleur du titre */
 }
 
-.ap-title {
-    font-size: 1.5em;
-    color: #e8491d;
-}
-
-.ap-period {
-    font-style: italic;
-    color: #666;
-    margin-bottom: 10px;
+.stage-period {
+    font-style: italic; /* Italique pour la période */
+    color: #666; /* Couleur grise pour la période */
 }
 
 /* Styles pour le pied de page */
 footer {
-    background: #35424a;
-    color: #ffffff;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 20px;
+    background: #35424a; /* Couleur d'arrière-plan du pied de page */
+    color: #ffffff; /* Couleur du texte du pied de page */
+    text-align: center; /* Centre le texte */
+    padding: 20px 0; /* Espace intérieur du pied de page */
 }
 
 /* Media Queries pour la responsivité */
 @media(max-width: 768px) {
-   .ap-frame {
-       padding: 15px;
-   }
-   
-   header .container {
-       flex-direction: column;
-   }
-   
-   header nav ul {
-       margin-top: 10px;
-   }
-   
-   header nav li {
-       padding: 0 10px;
+   .stage-frame {
+       padding: 15px; /* Ajuste le padding pour les petits écrans */
    }
 }

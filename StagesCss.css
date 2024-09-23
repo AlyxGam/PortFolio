@@ -65,10 +65,10 @@ h1 {
 /* Styles pour les sections de stage */
 .stage-frame {
     background: #fff;
-    margin: 20px auto; /* Espace autour du cadre */
-    padding: 20px; /* Espace intérieur du cadre */
-    box-shadow: 0 0 10px rgba(0,0,0,0.1); /* Ombre autour du cadre */
-    max-width: 600px; /* Largeur maximale du cadre */
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 600px;
 }
 
 .stage-title {

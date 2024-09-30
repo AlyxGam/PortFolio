@@ -1,0 +1,97 @@
+/* Reset de base et styles généraux */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 80%;
+    margin: auto;
+}
+
+/* Styles de l'en-tête */
+header {
+    background: #35424a;
+    color: #ffffff;
+    padding: 20px 0;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    font-size: 2.5em;
+}
+
+header h2 {
+    font-size: 1.5em;
+}
+
+header nav ul {
+    list-style: none;
+}
+
+header nav li {
+    display: inline;
+    padding: 0 20px;
+}
+
+header nav a {
+    color: #ffffff;
+    text-decoration: none;
+}
+
+header nav a:hover {
+    color: #e8491d;
+}
+
+/* Styles pour le titre principal */
+h1 {
+    text-align: center;
+    margin: 20px 0;
+}
+
+/* Styles pour les sections de stage */
+.stage-frame {
+    background: #fff;
+    margin: 20px auto;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    max-width: 600px;
+}
+
+.stage-title {
+    font-size: 1.5em; /* Taille du titre */
+    color: #e8491d; /* Couleur du titre */
+}
+
+.stage-period {
+    font-style: italic; /* Italique pour la période */
+    color: #666; /* Couleur grise pour la période */
+}
+
+/* Styles pour le pied de page */
+footer {
+    background: #35424a; /* Couleur d'arrière-plan du pied de page */
+    color: #ffffff; /* Couleur du texte du pied de page */
+    text-align: center; /* Centre le texte */
+    padding: 20px 0; /* Espace intérieur du pied de page */
+}
+
+/* Media Queries pour la responsivité */
+@media(max-width: 768px) {
+   .stage-frame {
+       padding: 15px; /* Ajuste le padding pour les petits écrans */
+   }
+}

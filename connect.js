@@ -3,8 +3,8 @@ document.addEventListener('DOMContentLoaded', function() {
     const messageDiv = document.getElementById('message');
 
     // Définition des identifiants (NE PAS FAIRE CECI DANS UN VRAI SYSTÈME)
-    const VALID_USERNAME = "Ralyx";
-    const VALID_PASSWORD = "RalyxPort";
+    const VALID_USERNAME = "RAlyx24";
+    const VALID_PASSWORD = "PortF24RA*-";
 
     loginForm.addEventListener('submit', function(e) {
         e.preventDefault();

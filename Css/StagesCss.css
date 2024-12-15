@@ -1,4 +1,5 @@
-/* Reset de base et styles généraux */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -6,22 +7,24 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: #333;
-    background-color: #f4f4f4;
+    background-color: #f8f9fa;
 }
 
 .container {
-    width: 80%;
+    width: 90%;
+    max-width: 1200px;
     margin: auto;
+    overflow: hidden;
 }
 
-/* Styles de l'en-tête */
 header {
-    background: #35424a;
+    background: linear-gradient(135deg, #35424a, #2c3e50);
     color: #ffffff;
     padding: 20px 0;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 header .container {
@@ -30,68 +33,82 @@ header .container {
     align-items: center;
 }
 
-header h1 {
-    font-size: 2.5em;
-}
-
-header h2 {
-    font-size: 1.5em;
-}
-
 header nav ul {
     list-style: none;
+    display: flex;
 }
 
 header nav li {
-    display: inline;
-    padding: 0 20px;
+    margin-left: 20px;
 }
 
 header nav a {
     color: #ffffff;
     text-decoration: none;
+    transition: color 0.3s ease;
 }
 
 header nav a:hover {
     color: #e8491d;
 }
 
-/* Styles pour le titre principal */
 h1 {
     text-align: center;
-    margin: 20px 0;
+    margin: 40px 0;
+    font-weight: 600;
+    color: #2c3e50;
 }
 
-/* Styles pour les sections de stage */
-.stage-frame {
+.card {
     background: #fff;
-    margin: 20px auto;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    max-width: 600px;
+    margin: 30px auto;
+    padding: 25px;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
 }
 
-.stage-title {
-    font-size: 1.5em; /* Taille du titre */
-    color: #e8491d; /* Couleur du titre */
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
 
-.stage-period {
-    font-style: italic; /* Italique pour la période */
-    color: #666; /* Couleur grise pour la période */
+.card-title {
+    font-size: 1.5em;
+    color: #e8491d;
+    margin-bottom: 10px;
 }
 
-/* Styles pour le pied de page */
+.card-subtitle {
+    font-style: italic;
+    color: #666;
+    margin-bottom: 15px;
+}
+
 footer {
-    background: #35424a; /* Couleur d'arrière-plan du pied de page */
-    color: #ffffff; /* Couleur du texte du pied de page */
-    text-align: center; /* Centre le texte */
-    padding: 20px 0; /* Espace intérieur du pied de page */
+    background: linear-gradient(135deg, #35424a, #2c3e50);
+    color: #ffffff;
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 40px;
 }
 
-/* Media Queries pour la responsivité */
 @media(max-width: 768px) {
-   .stage-frame {
-       padding: 15px; /* Ajuste le padding pour les petits écrans */
-   }
+    .card {
+        padding: 20px;
+    }
+    
+    header .container {
+        flex-direction: column;
+    }
+    
+    header nav ul {
+        margin-top: 15px;
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    header nav li {
+        margin: 5px 10px;
+    }
 }

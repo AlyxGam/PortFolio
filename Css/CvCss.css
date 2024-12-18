@@ -1,4 +1,5 @@
-/* Reset de base et styles généraux */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -6,32 +7,24 @@
 }
 
 body {
-    font-family: 'Arial', sans-serif;
+    font-family: 'Poppins', sans-serif;
     line-height: 1.6;
     color: #333;
-    background-color: #f4f4f4;
+    background-color: #f8f9fa;
 }
 
 .container {
-    width: 80%;
+    width: 90%;
+    max-width: 1200px;
     margin: auto;
 }
 
 /* Styles de l'en-tête */
 header {
-    background: #35424a;
+    background: linear-gradient(135deg, #35424a, #2c3e50);
     color: #ffffff;
     padding: 20px 0;
-}
-
-header .container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-header h1 {
-    font-size: 2.5em;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.1);
 }
 
 header nav ul {
@@ -50,82 +43,79 @@ header nav a {
 }
 
 header nav a:hover {
-    color: #e8491d;
+    color: #e8491d; /* Couleur au survol */
 }
 
-/* Styles pour le titre principal */
 h1 {
     text-align: center;
-    margin: 20px 0;
+    margin: 40px 0;
+    font-weight: 600; /* Poids de la police */
+    color: #2c3e50; /* Couleur du titre */
 }
 
 /* Styles pour la section CV */
 .ap-frame {
     background: #fff;
     margin: 20px auto;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0,0,0,0.1);
-    max-width: 800px;
-    transition: transform 0.3s ease;
-}
-
-.ap-frame:hover {
-    transform: translateY(-5px);
+    padding: 15px;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 4px; /* Coins arrondis */
 }
 
 .cv-container {
     width: 100%;
-    margin-bottom: 20px;
 }
 
 .cv-container iframe {
     border: none;
+    width: 100%;
+    height: 70vh; /* Hauteur de l'iframe */
 }
 
-.download-btn {
-    display: inline-block;
-    background-color: #e8491d;
-    color: #ffffff;
-    padding: 10px 20px;
-    text-decoration: none;
-    border-radius: 5px;
-    transition: background-color 0.3s;
+/* Styles pour le bouton plein écran */
+#fullscreen-btn {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    z-index: 10; /* Assurez-vous que le bouton est au-dessus de l'iframe */
+    background-color: rgba(128, 128, 128, 0.5); /* Gris semi-transparent */
+    border: none; /* Pas de bordure */
+    color: white; /* Couleur du texte */
+    padding: 10px 15px; /* Espacement interne */
+    border-radius: 5px; /* Coins arrondis */
+    transition: background-color 0.3s ease; /* Transition douce */
 }
-
-.download-btn:hover {
-    background-color: #333;
+#fullscreen-btn:hover {
+   background-color: rgba(64, 64, 64, 0.7); /* Gris plus foncé au survol */
 }
 
 /* Styles pour le pied de page */
 footer {
-    background: #35424a;
-    color: #ffffff;
-    text-align: center;
-    padding: 20px 0;
-    margin-top: 20px;
+   background: linear-gradient(135deg, #35424a, #2c3e50);
+   color: #ffffff;
+   text-align: center;
+   padding: 20px 0;
+   margin-top: 40px; /* Marge en haut du pied de page */
 }
+
 
 /* Media Queries pour la responsivité */
 @media(max-width: 768px) {
-   .ap-frame {
-       padding: 15px;
+   .cv-container iframe {
+       height: 50vh; /* Ajustement pour mobile */
    }
    
    header .container {
-       flex-direction: column;
+       flex-direction: column; /* Alignement vertical sur mobile */
    }
    
    header nav ul {
-    margin-top: 15px;
-    flex-wrap: wrap;
-    justify-content: center;
-}
+       margin-top: 15px;
+       flex-wrap: wrap; /* Permet au menu de passer à la ligne si nécessaire */
+       justify-content: center; /* Centre les éléments du menu */
+   }
 
-header nav li {
-    margin: 5px 10px;
-}
-
-   .cv-container iframe {
-       height: 400px;
+   header nav li {
+       margin-left: 10px; /* Réduit l'espacement entre les éléments du menu */
    }
 }

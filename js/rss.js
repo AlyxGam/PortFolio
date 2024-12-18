@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', function() {
-    const rssUrl = 'https://rss.app/feeds/tNcQHnVXhSl8KBkM.xml';
+    const rssUrl = 'https://rss.app/feeds/_2eUq8N6nfsXzDYV0.xml';
     const rssContainer = document.getElementById('rss-feed');
 
     fetch(rssUrl)

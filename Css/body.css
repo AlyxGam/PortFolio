@@ -215,3 +215,42 @@ p, ul, ol, .card-text {
 #rss-feed p {
     transition: opacity 0.3s ease;
 }
+
+/* Responsive general styles */
+@media (max-width: 768px) {
+    h1 {
+        font-size: 1.8rem;
+    }
+
+    h2 {
+        font-size: 1.5rem;
+    }
+
+    .container {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    [id^="Carousel"] {
+        max-width: 100%;
+    }
+
+    [id^="Carousel"] .carousel-item img {
+        max-height: 300px;
+    }
+}
+
+@media (max-width: 576px) {
+    .ap-card {
+        margin: 0 10px;
+    }
+
+    .progress {
+        height: 0.8rem;
+    }
+
+    .carousel-control-prev-icon,
+    .carousel-control-next-icon {
+        padding: 1rem;
+    }
+}

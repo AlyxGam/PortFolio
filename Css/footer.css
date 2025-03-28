@@ -22,3 +22,19 @@ footer a:hover {
     opacity: 0.8;
     text-decoration: underline;
 }
+
+/* Responsive Footer */
+@media (max-width: 768px) {
+    footer .row > div {
+        text-align: center !important;
+        margin-bottom: 1rem;
+    }
+
+    footer .d-flex.justify-content-end {
+        justify-content: center !important;
+    }
+
+    footer .row > div:last-child {
+        margin-bottom: 0;
+    }
+}

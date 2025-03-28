@@ -26,3 +26,57 @@
 .navbar.navbar-dark .navbar-brand img {
     filter: brightness(10); /* Pour rendre le logo blanc en mode sombre */
 }
+
+/* Responsive Navbar */
+@media (max-width: 991px) {
+    .navbar-brand {
+        font-size: 1.2rem;
+        margin-right: 0;
+    }
+
+    .navbar-brand img {
+        height: 30px !important;
+    }
+
+    .brand-text {
+        font-size: 1rem;
+    }
+
+    .navbar-collapse {
+        padding: 1rem 0;
+    }
+
+    .nav-link {
+        text-align: center;
+        padding: 0.5rem;
+    }
+
+    .darkmode-btn {
+        width: auto;
+        margin: 0.5rem auto;
+    }
+
+    .navbar-toggler {
+        margin-left: auto;
+        margin-right: 1rem;
+    }
+
+    .navbar-nav {
+        margin-top: 1rem;
+    }
+
+    .navbar .btn {
+        width: 100%;
+        margin-top: 1rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .navbar .container-fluid {
+        padding: 0.5rem 1.5rem;
+    }
+
+    .darkmode-btn {
+        margin-left: 1rem;
+    }
+}

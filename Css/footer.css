@@ -1,0 +1,24 @@
+footer {
+    flex-shrink: 0;
+    width: 100%;
+    padding: 1.5rem 0;
+}
+
+footer h3.h5 {
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+footer .btn-outline-primary {
+    border-width: 2px;
+}
+
+footer a {
+    text-decoration: none;
+    transition: opacity 0.2s;
+}
+
+footer a:hover {
+    opacity: 0.8;
+    text-decoration: underline;
+}

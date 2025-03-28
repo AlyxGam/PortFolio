@@ -1,41 +1,466 @@
 <!DOCTYPE html>
 <html lang="fr">
-<head>
+  <head>
     <meta charset="UTF-8">
-    <link rel="icon" href="./Doc/LogoSite.png" type="image/png">
+    <link rel="icon" href="./Doc/LogoSite.png">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Connexion - Portfolio de ROBERT Alyx</title>
+    <script src="https://unpkg.com/vue@3"></script>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="Css/login.css">
-</head>
-<body>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Geist+Sans:wght@400;500;700&display=swap" rel="stylesheet">
+    <script src="./js/rss.js" defer></script>
+    <link href="./Css/navbar.css" rel="stylesheet">
+    <link href="./Css/body.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+    <link href="./Css/footer.css" rel="stylesheet">
+    <title>Portfolio - ROBERT Alyx</title>
+  </head>
+  <body>
+    <div :class="{ 'bg-dark text-white': useDarkMode, 'bg-light text-dark': !useDarkMode }" style="flex: 1;">
+      <nav class="navbar navbar-expand-lg" :class="{ 'navbar-dark bg-dark': useDarkMode, 'navbar-light bg-light': !useDarkMode }">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center" href="#">
+                <img src="./Doc/LogoSite.png" alt="Logo" class="me-2" style="height: 40px;">
+                Développeur Web
+            </a>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li v-for="(page, index) in pages" class="nav-item" :key="index">
+                <a
+                    class="nav-link"
+                    :class="{active: activePage == index}"
+                    aria-current="page"
+                    href="#"
+                    @click.prevent="navigateTo(index)"
+                 >{{ page.link.text }}</a>
+              </li>
+            </ul>
+            <form class="d-flex">
+                <button class="btn btn-primary" @click.prevent="useDarkMode = !useDarkMode">{{ useDarkMode ? 'Light' : 'Dark' }} Mode</button>
+            </form>
+        </div>
+    </nav>
+    <div id="content" class="container">
+        <div class="text-center mb-4">
+            <h1 class="mb-4">{{ currentView.pageTitle }}</h1>
+        </div>
+        <div v-if="currentView.type === 'list'">
+          <template v-if="activePage === 0">
+            <h2>À propos de moi</h2>
+            <p>Actuellement en 2ème année de BTS SIO. Passionné par le développement mais aussi par les nouvelles technologies innovantes.</p>
+            <h3>Compétences Acquises</h3>
+            <div class="mb-4">
+              <div class="mb-2">HTML <span class="float-end">85%</span></div>
+              <div class="progress mb-2">
+                <div class="progress-bar bg-html" role="progressbar" style="width: 85%;" aria-valuenow="85" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="mb-2">CSS <span class="float-end">60%</span></div>
+              <div class="progress mb-2">
+                <div class="progress-bar bg-css" role="progressbar" style="width: 60%;" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="mb-2">JavaScript <span class="float-end">55%</span></div>
+              <div class="progress mb-2">
+                <div class="progress-bar bg-js" role="progressbar" style="width: 55%;" aria-valuenow="55" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="mb-2">PHP <span class="float-end">80%</span></div>
+              <div class="progress mb-2">
+                <div class="progress-bar bg-php" role="progressbar" style="width: 80%;" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="mb-2">C# <span class="float-end">50%</span></div>
+              <div class="progress mb-2">
+                <div class="progress-bar bg-csharp" role="progressbar" style="width: 50%;" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+              <div class="mb-2">MySQL <span class="float-end">75%</span></div>
+              <div class="progress">
+                <div class="progress-bar bg-mysql" role="progressbar" style="width: 75%;" aria-valuenow="75" aria-valuemin="0" aria-valuemax="100"></div>
+              </div>
+            </div>
+          </template>
+          <template v-if="activePage === 1">
+            <h2>Mes APs</h2>
+            <div class="row">
+              <div class="col-md-4 mb-4" v-for="(ap, index) in aps" :key="index">
+                <div class="card h-100 shadow-sm ap-card">
+                  <div class="card-bg" :style="{ backgroundImage: `url(${getFirstImage(ap.detailContent)})` }"></div>
+                  <div class="card-body position-relative">
+                    <h5 class="card-title">{{ ap.title }}</h5>
+                    <p>{{ ap.period }}</p>
+                    <button class="btn btn-primary" @click="showDetail('ap', index)">Voir le détail</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+          <template v-else-if="activePage === 2">
+            <h2>Mes Stages</h2>
+            <div class="row">
+              <div class="col-md-4 mb-4" v-for="(stage, index) in stages" :key="index">
+                <div class="card h-100 shadow-sm">
+                  <div class="card-body">
+                    <h5 class="card-title">{{ stage.title }}</h5>
+                    <p>{{ stage.period }}</p>
+                    <button class="btn btn-primary" @click="showDetail('stage', index)">Voir le détail</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </template>
+          <template v-else>
+            <div v-html="currentView.Content"></div>
+          </template>
+        </div>
+        <div v-else-if="currentView.type === 'detail'">
+          <button class="btn btn-secondary mb-3" @click="goBack()">Retour</button>
+          <div v-html="currentView.detailContent"></div>
+        </div>
+    </div>
+  </div>
+  <footer class="text-center py-3" :class="{ 'bg-dark text-white': useDarkMode, 'bg-light text-dark': !useDarkMode }">
     <div class="container">
-        <div class="row justify-content-center align-items-center min-vh-100">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-body">
-                        <h2 class="card-title text-center mb-4">Connexion</h2>
-                        <form id="loginForm">
-                            <div class="mb-3">
-                                <label for="username" class="form-label">Nom d'utilisateur</label>
-                                <input type="text" class="form-control" id="username" required>
-                            </div>
-                            <div class="mb-3">
-                                <label for="password" class="form-label">Mot de passe</label>
-                                <input type="password" class="form-control" id="password" required>
-                            </div>
-                            <div class="d-grid">
-                                <button type="submit" class="btn btn-primary">Se connecter</button>
-                            </div>
-                        </form>
-                        <div id="message" class="mt-3"></div>
-                    </div>
+        <div class="row align-items-center">
+            <div class="col-md-4 text-start">
+                <h3 class="h5">Contact</h3>
+                <p class="mb-0">
+                    <a :class="{ 'text-white': useDarkMode, 'text-dark': !useDarkMode }" 
+                       href="mailto:alyx.robert@stcharles-stecroix.org">
+                        alyx.robert@stcharles-stecroix.org
+                    </a>
+                </p>
+            </div>
+            <div class="col-md-4">
+                <span>{{ new Date().getFullYear() }} Alyx ROBERT Tous droits réservés.</span>
+            </div>
+            <div class="col-md-4">
+                <div class="d-flex justify-content-end gap-3">
+                    <a href="#" @click.prevent="navigateTo(1)" :class="{ 'text-white': useDarkMode, 'text-dark': !useDarkMode }">Mes APs</a>
+                    <span class="mx-2">|</span>
+                    <a href="#" @click.prevent="navigateTo(2)" :class="{ 'text-white': useDarkMode, 'text-dark': !useDarkMode }">Mes Stages</a>
                 </div>
             </div>
         </div>
     </div>
+  </footer>
+  <script>
+    // Vérification de la connexion
+    if (sessionStorage.getItem('isLoggedIn') !== 'true') {
+        window.location.href = './login.html';
+    }
 
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="connect.js"></script>
+    Vue.createApp({
+      data() {
+        return {
+          activePage: 0,
+          useDarkMode: false,
+          currentView: {},
+          aps: [
+            {
+              title: 'Site Sciss',
+              period: '28 Septembre - 19 Octobre 2023',
+              detailContent: `
+                <h2>Description :</h2>
+                <p>Ce projet m'a permis de découvrir WordPress et d'apprendre à l'utiliser.</p>
+                <p>La première étape était la conception du site avec WordPress, incluant plusieurs pages et une page de contact.</p>
+                <p>La deuxième étape consistait à corriger et améliorer une version du site fournie par nos professeurs.</p>
+                <h2>Outils utilisés :</h2>
+                <div class="d-flex gap-3">
+                  <i class="fab fa-wordpress fa-2x"></i>
+                </div>
+                <h2>Compétences acquises :</h2>
+                <ul>
+                  <li>Gérer le patrimoine informatique</li>
+                  <li>Répondre aux incidents et aux demandes d'assistance</li>
+                </ul>
+                <h2>Mode de travail :</h2>
+                <p>Projet réalisé seul.</p>
+                <div id="CarouselSciss" class="carousel slide mt-4" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="./img/Sciss1.PNG" class="d-block w-100" alt="SCISS Image 1">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="./img/Sciss2.PNG" class="d-block w-100" alt="SCISS Image 2">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="./img/Sciss3.PNG" class="d-block w-100" alt="SCISS Image 3">
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#CarouselSciss" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Précédent</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#CarouselSciss" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Suivant</span>
+                  </button>
+                </div>
+              `
+            },
+            {
+              title: 'Quinconces Jeunes',
+              period: '16 Novembre 2023 - 10 Janvier 2024',
+              detailContent: `
+                <h2>Description :</h2>
+                <p>Ce projet a introduit l'utilisation du CMS Webflow.</p>
+                <p>La première étape consistait à concevoir une maquette pour le site avec Webflow.</p>
+                <p>La deuxième étape était la création du site Webflow en respectant les contraintes données.</p>
+                <h2>Outils utilisés :</h2>
+                <div class="d-flex gap-3">
+                  <i class="fab fa-php fa-2x"></i>
+                  <i class="fas fa-database fa-2x"></i>
+                  <i class="fab fa-bootstrap fa-2x"></i>
+                </div>
+                <h2>Compétences acquises :</h2>
+                <ul>
+                  <li>Développer la présence en ligne de l'organisation</li>
+                  <li>Travailler en mode projet</li>
+                </ul>
+                <h2>Mode de travail :</h2>
+                <p>Projet réalisé en équipe de 3 personnes.</p>
+                <div id="CarouselQuinconces" class="carousel slide mt-4" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="./img/QuiconcesBTN.PNG" class="d-block w-100" alt="Quinconces Image">
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#CarouselQuinconces" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Précédent</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#CarouselQuinconces" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Suivant</span>
+                  </button>
+                </div>
+              `
+            },
+            {
+              title: 'Bootstrap site jeux',
+              period: '18 Janvier - 06 Mai 2024',
+              detailContent: `
+                <h2>Description :</h2>
+                <p>Ce projet a permis de manipuler une base de données via PHP et d'utiliser Bootstrap pour le design.</p>
+                <p>La première phase consistait à construire le site avec plusieurs pages communes pour différentes catégories.</p>
+                <p>La deuxième phase impliquait l'intégration de PHP et d'une base de données pour rendre le site dynamique.</p>
+                <h2>Outils utilisés :</h2>
+                <div class="d-flex gap-3">
+                  <i class="fab fa-php fa-2x"></i>
+                  <i class="fas fa-database fa-2x"></i>
+                  <i class="fab fa-bootstrap fa-2x"></i>
+                </div>
+                <h2>Compétences acquises :</h2>
+                <ul>
+                  <li>Gérer le patrimoine informatique</li>
+                  <li>Travailler en mode projet</li>
+                </ul>
+                <h2>Mode de travail :</h2>
+                <p>Projet réalisé en équipe de 2 personnes.</p>
+                <div id="CarouselJeux" class="carousel slide mt-4" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="./img/Jeux1.PNG" class="d-block w-100" alt="Jeux Image 1">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="./img/Jeux2.PNG" class="d-block w-100" alt="Jeux Image 2">
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#CarouselJeux" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Précédent</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#CarouselJeux" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Suivant</span>
+                  </button>
+                </div>
+              `
+            },
+            {
+              title: 'Association SportPourTous',
+              period: '09 Septembre - 16 Décembre 2024',
+              detailContent: `
+                <h2>Description :</h2>
+                <p>Ce projet consistait à créer une plateforme pour une association fictive, SportPourTous.</p>
+                <p>L'objectif était de développer un site permettant aux utilisateurs de découvrir les activités proposées et de s'inscrire à des événements.</p>
+                <h2>Outils utilisés :</h2>
+                <div class="d-flex gap-3">
+                  <i class="fab fa-php fa-2x"></i>
+                  <i class="fas fa-database fa-2x"></i>
+                  <i class="fab fa-bootstrap fa-2x"></i>
+                </div>
+                <h2>Compétences acquises :</h2>
+                <ul>
+                  <li>Gérer le patrimoine informatique</li>
+                  <li>Travailler en mode projet</li>
+                </ul>
+                <h2>Mode de travail :</h2>
+                <p>Projet réalisé en équipe de 3 personnes.</p>
+                <div id="CarouselSportPourTous" class="carousel slide mt-4" data-bs-ride="carousel">
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="./img/SportPourTous1.PNG" class="d-block w-100" alt="SportPourTous Image 1">
+                    </div>
+                    <div class="carousel-item">
+                      <img src="./img/SportPourTous2.PNG" class="d-block w-100" alt="SportPourTous Image 2">
+                    </div>
+                  </div>
+                  <button class="carousel-control-prev" type="button" data-bs-target="#CarouselSportPourTous" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Précédent</span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#CarouselSportPourTous" data-bs-slide="next">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="visually-hidden">Suivant</span>
+                  </button>
+                </div>
+              `
+            },
+            {
+              title: 'AP5',
+              period: 'À définir',
+              detailContent: `
+                <h2>Description :</h2>
+                <p>Les détails de ce projet seront ajoutés ultérieurement.</p>
+              `
+            }
+          ],
+          stages: [
+            {
+              title: 'Développeur Python chez Silentsys',
+              period: 'Mai - Juin 2024',
+              detailContent: `
+                <h2>Description du stage</h2>
+                <p>Ce projet consistait à améliorer un programme Python permettant de communiquer avec les appareils de la marque Pico.</p>
+                <p>La première étape a été d'analyser le programme existant pour identifier les améliorations nécessaires, en comprenant les fonctionnalités actuelles et les spécificités des appareils Pico.</p>
+                <p>La seconde étape a porté sur la mise en œuvre des améliorations pour optimiser le code et les interfaces, les rendant plus performants et fiables. Ce travail a permis d'approfondir nos compétences en Python, notamment en structuration de code et en gestion des interactions logiciel-matériel.</p>
+                <h2>Outils utilisés :</h2>
+                <div class="d-flex gap-3">
+                  <i class="fab fa-python fa-2x"></i>
+                </div>
+                <h2>Compétences acquises :</h2>
+                <ul>
+                  <li>Travailler en mode projet</li>
+                  <li>Organiser son développement professionnel</li>
+                  <li>Mise à disposition des utilisateurs d'un service informatique</li>
+                  <li>Gérer le patrimoine informatique</li>
+                </ul>
+                <h2>Mode de travail :</h2>
+                <p>Réalisation du travail en autonomie mais aidé par l'équipe si besoin.</p>
+              `
+            },
+            {
+              title: 'Stage à Anjou Connectique',
+              period: '20 Janvier - 21 Février 2025',
+              detailContent: `
+                <h2>Description du stage</h2>
+                <p>Les détails de ce stage seront ajoutés ultérieurement.</p>
+                <h2>Outils utilisés :</h2>
+                <div class="d-flex gap-3">
+                  <!-- Add relevant tools/logos here when details are available -->
+                </div>
+                <h2>Compétences acquises :</h2>
+                <ul>
+                  <li>Les compétences acquises seront ajoutées ultérieurement.</li>
+                </ul>
+                <h2>Mode de travail :</h2>
+                <p>Les informations sur le mode de travail seront ajoutées ultérieurement.</p>
+              `
+            }
+          ],
+          pages: [
+            {
+              link: {text: 'Accueil', url: '/index.html'},
+              pageTitle: 'Portfolio - Accueil',
+              type: 'list',
+              Content: ``
+            },
+            {
+              link: {text: 'APs', url: '/APs.html'},
+              pageTitle: 'Portfolio - APs',
+              type: 'list',
+              Content: ''
+            },
+            {
+              link: {text: 'Stages', url: '/Stages.html'},
+              pageTitle: 'Portfolio - Stages',
+              type: 'list',
+              Content: ''
+            },
+            {
+              link: {text: 'CV', url: '/CV.html'},
+              pageTitle: 'Portfolio - CV',
+              type: 'list',
+              Content: `
+                <iframe src="./Doc/CvRa2024_25.pdf" width="100%" height="600px"></iframe>
+                <a href="./Doc/CvRa2024.pdf" download>Télécharger mon CV</a>
+              `
+            },
+            {
+              link: { text: 'Veille Technologique', url: '/Veille.html' },
+              pageTitle: 'Portfolio - Veille Technologique',
+              type: 'list',
+              Content: `
+                <h2>Ma méthode de veille</h2>
+                <p>Ma veille technologique se concentre sur les frameworks modernes et l'intelligence artificielle en développement...</p>
+                <h3>Sujets de veille principaux :</h3>
+                <ul>
+                  <li>Vue.js 3</li>
+                  <li>Laravel</li>
+                  <li>IA en Programmation</li>
+                </ul>
+                <h3>Outils de veille :</h3>
+                <ul>
+                  <li>Allorigin(API)</li>
+                </ul>
+                <h3>Articles récents :</h3>
+                <div id="rss-feed" class="mt-4">
+                  <p>Chargement des articles...</p>
+                </div>
+              `
+            }
+          ],
+          rssArticles: [], // Nouveau tableau pour stocker les articles
+          rssLoaded: false
+        };
+      },
+      methods: {
+        navigateTo(index) {
+          this.activePage = index;
+          this.currentView = this.pages[index];
+          
+          // Si on navigue vers Veille Technologique
+          if (this.pages[index].link.text === 'Veille Technologique') {
+              this.$nextTick(() => {
+                  const event = new Event('DOMContentLoaded');
+                  document.dispatchEvent(event);
+              });
+          }
+        },
+        showDetail(type, index) {
+          const item = this[type + 's'][index];
+          this.currentView = {
+            pageTitle: item.title,
+            type: 'detail',
+            detailContent: item.detailContent
+          };
+        },
+        goBack() {
+          this.currentView = this.pages[this.activePage];
+        },
+        getFirstImage(content) {
+          const match = content.match(/<img[^>]+src="([^">]+)"/);
+          return match ? match[1] : '';
+        },
+        async loadRssFeeds() {
+          this.rssLoaded = true; // Marquer comme chargé
+          // Déclencher le chargement via rss.js
+          const event = new Event('loadRSS');
+          document.dispatchEvent(event);
+        }
+      },
+      mounted() {
+        this.currentView = this.pages[this.activePage];
+      }
+    }).mount('body');
+  </script>
 </body>
 </html>

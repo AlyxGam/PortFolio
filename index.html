@@ -14,6 +14,7 @@
     <link href="./Css/body.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
     <link href="./Css/footer.css" rel="stylesheet">
+    <script src="./js/darkmode.js" defer></script>
     <title>Portfolio - ROBERT Alyx</title>
   </head>
   <body>
@@ -35,9 +36,6 @@
                         </a>
                     </li>
                 </ul>
-                <button class="btn darkmode-btn" @click.prevent="useDarkMode = !useDarkMode">
-                    <i :class="useDarkMode ? 'fas fa-moon' : 'fas fa-sun'"></i>
-                </button>
             </div>
         </div>
     </nav>
@@ -141,6 +139,9 @@
         </div>
     </div>
   </footer>
+  <button class="theme-toggle" :class="{ 'dark': useDarkMode }" @click.prevent="useDarkMode = !useDarkMode">
+    <i :class="useDarkMode ? 'fas fa-moon' : 'fas fa-sun'"></i>
+  </button>
   <script>
     // Vérification de la connexion
     if (sessionStorage.getItem('isLoggedIn') !== 'true') {

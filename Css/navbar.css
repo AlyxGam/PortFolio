@@ -53,7 +53,7 @@
 
     .darkmode-btn {
         width: auto;
-        margin: 0.5rem auto;
+        margin: 1rem auto;
     }
 
     .navbar-toggler {
@@ -80,3 +80,69 @@
         margin-left: 1rem;
     }
 }
+
+.darkmode-btn i {
+    margin-right: 0.5rem;
+    transition: transform 0.3s ease;
+}
+
+.darkmode-btn:hover i {
+    transform: rotate(15deg);
+}
+
+/* Animation for mode switch */
+.fa-sun {
+    color: #ffd700;
+}
+
+.fa-moon {
+    color: #f4f4f4;
+}
+
+/* Dark mode button styles */
+.darkmode-btn {
+    background: none;
+    border: none;
+    padding: 0.5rem;
+    font-size: 1.2rem;
+    line-height: 1;
+    cursor: pointer;
+}
+
+.darkmode-btn i {
+    display: inline-block;
+    transform-origin: center;
+}
+
+/* Animations spécifiques pour chaque icône */
+.darkmode-btn .fa-moon {
+    color: #f1c40f;
+    animation: rotateMoon 0.7s ease;
+}
+
+.darkmode-btn .fa-sun {
+    color: #f39c12;
+    animation: rotateSun 0.7s ease;
+}
+
+@keyframes rotateMoon {
+    from {
+        transform: rotate(-360deg);
+        opacity: 0;
+    }
+    to {
+        transform: rotate(0);
+        opacity: 1;
+    }
+}
+
+@keyframes rotateSun {
+    from {
+        transform: rotate(360deg);
+        opacity: 0;
+    }
+    to {
+        transform: rotate(0);
+        opacity: 1;
+    }
+} 

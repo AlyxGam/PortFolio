@@ -35,8 +35,8 @@
                         </a>
                     </li>
                 </ul>
-                <button class="btn btn-primary darkmode-btn" @click.prevent="useDarkMode = !useDarkMode">
-                    {{ useDarkMode ? 'Light' : 'Dark' }} Mode
+                <button class="btn darkmode-btn" @click.prevent="useDarkMode = !useDarkMode">
+                    <i :class="useDarkMode ? 'fas fa-moon' : 'fas fa-sun'"></i>
                 </button>
             </div>
         </div>

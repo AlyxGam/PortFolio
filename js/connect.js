@@ -8,7 +8,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Vérifier si déjà connecté
     if (sessionStorage.getItem('isLoggedIn') === 'true') {
-        window.location.href = '/';
+        window.location.href = './index.html';
         return;
     }
 
@@ -25,7 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
             showMessage("Connexion réussie !", 'success');
             sessionStorage.setItem('isLoggedIn', 'true');
             setTimeout(() => {
-                window.location.href = '/';
+                window.location.href = './index.html';
             }, 1000);
         } else {
             showMessage("Identifiants incorrects", 'danger');

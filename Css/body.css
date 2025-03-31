@@ -222,10 +222,15 @@ p, ul, ol, .card-text {
   display: inline-block;
   border-radius: 15px;
   overflow: hidden;
+  width: 100%;
+  max-width: 800px;
 }
 
 .website-link img {
   transition: all 0.3s ease;
+  width: 100%;
+  height: auto;
+  display: block;
 }
 
 .website-link .overlay {
@@ -279,6 +284,15 @@ p, ul, ol, .card-text {
     [id^="Carousel"] .carousel-item img {
         max-height: 300px;
     }
+
+    .website-link {
+        max-width: 100%;
+        margin: 0 10px;
+    }
+
+    .website-link .view-text {
+        font-size: 1.2rem;
+    }
 }
 
 @media (max-width: 576px) {
@@ -293,5 +307,13 @@ p, ul, ol, .card-text {
     .carousel-control-prev-icon,
     .carousel-control-next-icon {
         padding: 1rem;
+    }
+
+    .website-link {
+        margin: 0;
+    }
+
+    .website-link .view-text {
+        font-size: 1rem;
     }
 }

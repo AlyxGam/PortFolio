@@ -50,5 +50,11 @@
         <div id="message"></div>
     </div>
     <script src="js/connect.js"></script>
+    <script>
+        // Rediriger vers index.html si déjà connecté
+        if (sessionStorage.getItem('isLoggedIn') === 'true') {
+            window.location.href = './index.html';
+        }
+    </script>
 </body>
 </html>

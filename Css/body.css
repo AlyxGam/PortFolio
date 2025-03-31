@@ -216,6 +216,47 @@ p, ul, ol, .card-text {
     transition: opacity 0.3s ease;
 }
 
+/* Styles pour le lien du site Quinconces */
+.website-link {
+  position: relative;
+  display: inline-block;
+  border-radius: 15px;
+  overflow: hidden;
+}
+
+.website-link img {
+  transition: all 0.3s ease;
+}
+
+.website-link .overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: all 0.3s ease;
+}
+
+.website-link .view-text {
+  color: white;
+  font-size: 1.5rem;
+  font-weight: 600;
+  text-transform: uppercase;
+}
+
+.website-link:hover img {
+  filter: blur(4px);
+}
+
+.website-link:hover .overlay {
+  opacity: 1;
+}
+
 /* Responsive general styles */
 @media (max-width: 768px) {
     h1 {

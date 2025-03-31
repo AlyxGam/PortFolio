@@ -13,7 +13,7 @@
         },
         {
           "key": "Content-Security-Policy",
-          "value": "default-src 'self' cdn.jsdelivr.net *.cloudflare.com; style-src 'self' 'unsafe-inline' cdn.jsdelivr.net; script-src 'self' 'unsafe-inline' 'unsafe-eval' cdn.jsdelivr.net; img-src 'self' * data:; font-src 'self' data: cdn.jsdelivr.net *.cloudflare.com;"
+          "value": "default-src 'self' cdn.jsdelivr.net *.cloudflare.com; style-src 'self' 'unsafe-inline' cdn.jsdelivr.net; script-src 'self' 'unsafe-inline' 'unsafe-eval' cdn.jsdelivr.net unpkg.com; img-src 'self' * data:; font-src 'self' data: cdn.jsdelivr.net *.cloudflare.com;"
         }
       ]
     }
